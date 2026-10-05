@@ -21,7 +21,7 @@ function institutionMenu() returns error? {
 }
 //cloneWithType() turns raw JSON from the server side into a typed Ballerina
 function listInstitutions() {
-    [int, json]|error result = httpGet("/institutions");
+    [int, json]|error result = httpGet("/institutions"); //sends a request to the server
     if result is error {
         io:println("Request failed: " + result.message());
         return;
@@ -44,13 +44,13 @@ function listInstitutions() {
 function addInstitution() returns error? {
     io:println("(Enter 0 at any prompt to cancel)");
     string name = check ask("Institution name");
-    json payload = {name: name};
+    json payload = {name: name}; //builds request body
     [int, json]|error result = httpPost("/institutions", payload);
     if result is error {
-        io:println("Request failed: " + result.message());
+        io:println("Request failed: " + result.message()); //handles network failure
         return;
     }
-    var [status, body] = result;
+    var [status, body] = result; //unpacks the answer
     if status == 200 {
         io:println("Institution added.");
     } else {
