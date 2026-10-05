@@ -19,7 +19,7 @@ function institutionMenu() returns error? {
         }
     }
 }
-
+//cloneWithType() turns raw JSON from the server side into a typed Ballerina
 function listInstitutions() {
     [int, json]|error result = httpGet("/institutions");
     if result is error {
