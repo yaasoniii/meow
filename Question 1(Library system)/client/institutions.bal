@@ -92,7 +92,7 @@ function selectInstitution(string? current = ()) returns string|error {
 
     io:println("Institution (0 to cancel):");
     foreach int i in 0 ..< names.length() {
-        io:println("  " + (i + 1).toString() + ". " + names[i]);
+        io:println("  " + (i + 1).toString() + ". " + names[i]); // print list accordingly
     }
     while true {
         string label = current is string
